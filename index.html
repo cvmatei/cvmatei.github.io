@@ -18,7 +18,7 @@
         <div class="project" onmouseover="playVideo(this)" onmouseout="pauseVideo(this)">
             <h3>Linux-Chat System</h3>
             <p>Real-time messaging app for Linux</p>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/HIRgUHcJwnM" frameborder="0" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/HIRgUHcJwnM" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
         </div>
 
         <!-- Add more projects as needed -->
@@ -30,15 +30,17 @@
     </footer>
 
     <script>
-        function playVideo(element) {
-            const iframe = element.querySelector('iframe');
-            iframe.contentWindow.postMessage('{"event":"command","func":"' + 'playVideo' + '","args":""}', '*');
-        }
+        const iframes = document.querySelectorAll('iframe');
 
-        function pauseVideo(element) {
-            const iframe = element.querySelector('iframe');
-            iframe.contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*');
-        }
+        iframes.forEach(iframe => {
+            iframe.addEventListener('mouseover', function () {
+                this.contentWindow.postMessage('{"event":"command","func":"' + 'playVideo' + '","args":""}', '*');
+            });
+
+            iframe.addEventListener('mouseout', function () {
+                this.contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*');
+            });
+        });
     </script>
 
 </body>
