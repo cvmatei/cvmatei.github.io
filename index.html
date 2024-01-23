@@ -28,5 +28,18 @@
     <footer>
         <p>&copy; 2024 Cosmin Matei</p>
     </footer>
+
+    <script>
+        function playVideo(element) {
+            const iframe = element.querySelector('iframe');
+            iframe.contentWindow.postMessage('{"event":"command","func":"' + 'playVideo' + '","args":""}', '*');
+        }
+
+        function pauseVideo(element) {
+            const iframe = element.querySelector('iframe');
+            iframe.contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*');
+        }
+    </script>
+
 </body>
 </html>
